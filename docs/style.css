@@ -196,6 +196,13 @@ main {
   background: linear-gradient(120deg, rgba(56, 189, 248, 0.08), rgba(139, 92, 246, 0.08));
 }
 
+.section.linkbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
 .section__head h2 {
   margin: 4px 0 8px;
   font-size: 28px;
@@ -315,6 +322,10 @@ code {
   }
   .section {
     padding: 24px;
+  }
+  .section.linkbar {
+    flex-direction: column;
+    align-items: flex-start;
   }
   .card.wide {
     grid-column: span 1;
