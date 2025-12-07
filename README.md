@@ -69,32 +69,33 @@ accesshub-infra-guide/
 ## 🗺️ Arquitetura (mermaid)
 ```mermaid
 flowchart LR
-    subgraph Cliente
-      A[WireGuard Client]\n10.8.0.X
-    end
+  subgraph Cliente
+    A["WireGuard Client<br/>10.8.0.X"]
+  end
 
-    subgraph VPN
-      WG[WireGuard Server\n<VPN_PUBLIC_IP>\n<WG_SERVER_PUBLIC_KEY>]
-      DNS[dnsmasq\n<VPN_GATEWAY_IP>:53]
-    end
+  subgraph VPN
+    WG["WireGuard Server<br/>&lt;VPN_PUBLIC_IP&gt;<br/>&lt;WG_SERVER_PUBLIC_KEY&gt;"]
+    DNS["dnsmasq<br/>&lt;VPN_GATEWAY_IP&gt;:53"]
+  end
 
-    subgraph Core
-      NGINX[NGINX Proxy\n<ACCESSHUB_DOMAIN>]
-      GUAC[Guacamole + Tomcat9\nMySQL (cred. efêmeras)]
-      VAULT[Vault\nKV + Database]
-      OBS[Grafana + Loki + Promtail]
-    end
+  subgraph Core
+    NGINX["NGINX Proxy<br/>&lt;ACCESSHUB_DOMAIN&gt;"]
+    GUAC["Guacamole + Tomcat9<br/>MySQL (cred. efêmeras)"]
+    VAULT["Vault<br/>KV + Database"]
+    OBS["Grafana + Loki + Promtail"]
+  end
 
-    A -->|Tunnel| WG
-    WG --> DNS
-    WG --> NGINX
-    DNS --> NGINX
-    NGINX --> GUAC
-    NGINX --> VAULT
-    NGINX --> OBS
-    VAULT --> GUAC
-    Promtail((Promtail)) --> OBS
-    Logs[(Logs: syslog, wg, nginx, vault, guac)] --> Promtail
+  A -->|Tunnel| WG
+  WG --> DNS
+  WG --> NGINX
+  DNS --> NGINX
+  NGINX --> GUAC
+  NGINX --> VAULT
+  NGINX --> OBS
+  VAULT --> GUAC
+  Promtail((Promtail)) --> OBS
+  Logs[(Logs: syslog, wg, nginx, vault, guac)] --> Promtail
+
 ```
 
 ---
