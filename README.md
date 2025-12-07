@@ -4,6 +4,10 @@ Guia sanitizado para apresentar a arquitetura e os procedimentos de operação d
 
 ---
 
+![AccessHub Banner](https://img.shields.io/badge/AccessHub-Infra_Guide-1f6feb?style=for-the-badge&logo=github) ![Docs](https://img.shields.io/badge/Docs-Ready-green?style=flat-square) ![Security](https://img.shields.io/badge/Secrets-Removed-orange?style=flat-square)
+
+---
+
 ## 🎯 O que é
 - **Arquitetura**: visão de rede e fluxo de credenciais efêmeras via Vault.
 - **Operação**: guias passo a passo para VPN, Guacamole, Vault, observabilidade e incidentes.
@@ -52,6 +56,39 @@ accesshub-infra-guide/
    ├─ 03_operacao_vault.md
    ├─ 04_logs_auditoria.md
    └─ 05_procedimentos_emergencia.md
+```
+
+---
+
+## 🗺️ Arquitetura (mermaid)
+```mermaid
+flowchart LR
+    subgraph Cliente
+      A[WireGuard Client]\n10.8.0.X
+    end
+
+    subgraph VPN
+      WG[WireGuard Server\n<VPN_PUBLIC_IP>\n<WG_SERVER_PUBLIC_KEY>]
+      DNS[dnsmasq\n<VPN_GATEWAY_IP>:53]
+    end
+
+    subgraph Core
+      NGINX[NGINX Proxy\n<ACCESSHUB_DOMAIN>]
+      GUAC[Guacamole + Tomcat9\nMySQL (cred. efêmeras)]
+      VAULT[Vault\nKV + Database]
+      OBS[Grafana + Loki + Promtail]
+    end
+
+    A -->|Tunnel| WG
+    WG --> DNS
+    WG --> NGINX
+    DNS --> NGINX
+    NGINX --> GUAC
+    NGINX --> VAULT
+    NGINX --> OBS
+    VAULT --> GUAC
+    Promtail((Promtail)) --> OBS
+    Logs[(Logs: syslog, wg, nginx, vault, guac)] --> Promtail
 ```
 
 ---
