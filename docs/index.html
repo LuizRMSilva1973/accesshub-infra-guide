@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AccessHub Infra Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__backdrop">
+      <img src="../assets/banner.svg" alt="AccessHub banner" />
+    </div>
+    <div class="hero__content">
+      <p class="eyebrow">Portfólio Infra · VPN · Guacamole · Vault · Observabilidade</p>
+      <h1>AccessHub Infra Guide</h1>
+      <p class="lede">
+        Documentação sanitizada para apresentar arquitetura, operação e testes do AccessHub.
+        Todos os segredos foram removidos e substituídos por placeholders prontos para customização.
+      </p>
+      <div class="hero__actions">
+        <a class="btn primary" href="https://github.com/LuizRMSilva1973/accesshub-infra-guide" target="_blank" rel="noopener">Ver repositório</a>
+        <a class="btn ghost" href="../README.md">Ler README</a>
+      </div>
+      <div class="chips">
+        <span class="chip">Secrets removed</span>
+        <span class="chip">Docs ready</span>
+        <span class="chip">Checklist incluído</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="grid">
+      <div class="card">
+        <p class="card__eyebrow">01</p>
+        <h3>Arquitetura</h3>
+        <p>Fluxo end-to-end com WireGuard, Guacamole + Vault (credenciais efêmeras) e observabilidade.</p>
+        <a href="../docs_cliente/00_arquitetura.md">Abrir guia</a>
+      </div>
+      <div class="card">
+        <p class="card__eyebrow">02</p>
+        <h3>VPN (WireGuard)</h3>
+        <p>Provisionamento de peers, split/full tunnel, DNS interno e troubleshooting rápido.</p>
+        <a href="../docs_cliente/01_acesso_vpn.md">Abrir guia</a>
+      </div>
+      <div class="card">
+        <p class="card__eyebrow">03</p>
+        <h3>Guacamole</h3>
+        <p>Acesso seguro via proxy, integração com Vault e rotação automática de credenciais.</p>
+        <a href="../docs_cliente/02_acesso_guacamole.md">Abrir guia</a>
+      </div>
+      <div class="card">
+        <p class="card__eyebrow">04</p>
+        <h3>Vault</h3>
+        <p>KV, Database, AppRole, políticas mínimas e passos de unseal/operacional.</p>
+        <a href="../docs_cliente/03_operacao_vault.md">Abrir guia</a>
+      </div>
+      <div class="card">
+        <p class="card__eyebrow">05</p>
+        <h3>Observabilidade</h3>
+        <p>Stack Grafana + Loki + Promtail com fontes de logs e consultas de validação.</p>
+        <a href="../docs_cliente/04_logs_auditoria.md">Abrir guia</a>
+      </div>
+      <div class="card">
+        <p class="card__eyebrow">06</p>
+        <h3>Procedimentos</h3>
+        <p>Runbook de incidentes para Vault, Guacamole, WireGuard e observabilidade.</p>
+        <a href="../docs_cliente/05_procedimentos_emergencia.md">Abrir guia</a>
+      </div>
+      <div class="card wide">
+        <p class="card__eyebrow">Extra</p>
+        <h3>Plano de testes</h3>
+        <p>Homologação ponta a ponta com comandos, outputs esperados e checklist de evidências.</p>
+        <a href="../TESTES.md">Abrir TESTES.md</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section__head">
+        <p class="eyebrow">Arquitetura em 30s</p>
+        <h2>Como as peças se encaixam</h2>
+      </div>
+      <div class="arch">
+        <div class="arch__col">
+          <div class="pill">Entrada segura</div>
+          <h4>WireGuard</h4>
+          <p>Túnel para 10.8.0.0/24 (exemplo), DNS interno e UFW restritivo liberando Guacamole/Vault/Grafana só para a VPN.</p>
+        </div>
+        <div class="arch__col">
+          <div class="pill">Credenciais efêmeras</div>
+          <h4>Vault + Guacamole</h4>
+          <p>AppRole gera usuários MySQL de curta duração; Tomcat/guacd recarregam sem downtime via timer.</p>
+        </div>
+        <div class="arch__col">
+          <div class="pill">Observabilidade</div>
+          <h4>Loki + Promtail + Grafana</h4>
+          <p>Coleta de syslog, WireGuard, Guacamole, NGINX e auditoria do Vault com dashboard pronto.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="section__head">
+        <p class="eyebrow">Antes de usar</p>
+        <h2>Substitua os placeholders</h2>
+        <p class="lede small">Todos os segredos foram removidos. Preencha com valores reais antes de implantar.</p>
+      </div>
+      <div class="list">
+        <div class="list__item">
+          <span class="badge">Domínio</span>
+          <p><code>&lt;ACCESSHUB_DOMAIN&gt;</code> → ex.: accesshub.suaempresa.com</p>
+        </div>
+        <div class="list__item">
+          <span class="badge">VPN Pública</span>
+          <p><code>&lt;VPN_PUBLIC_IP&gt;</code> → ex.: 203.0.113.10:51820</p>
+        </div>
+        <div class="list__item">
+          <span class="badge">Gateway</span>
+          <p><code>&lt;VPN_GATEWAY_IP&gt;</code> → ex.: 10.8.0.1</p>
+        </div>
+        <div class="list__item">
+          <span class="badge">WireGuard</span>
+          <p><code>&lt;WG_SERVER_PUBLIC_KEY&gt;</code> → chave pública do servidor.</p>
+        </div>
+        <div class="list__item">
+          <span class="badge">Credenciais padrão</span>
+          <p>Altere usuários/senhas de exemplo (ex.: <code>admin</code>) conforme a política de segurança.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section__head">
+        <p class="eyebrow">Entrega</p>
+        <h2>Checklist rápido</h2>
+      </div>
+      <ul class="checks">
+        <li>Placeholders trocados e chaves/leases gerados novamente.</li>
+        <li>Ranges de rede e portas revisados no firewall.</li>
+        <li>Certificados e redirecionamentos HTTPS validados.</li>
+        <li>Dashboard de observabilidade atualizado e datasources ok.</li>
+        <li>Planilha de evidências do <code>TESTES.md</code> preenchida.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>AccessHub Infra Guide — portfólio sanitizado · <a href="https://github.com/LuizRMSilva1973/accesshub-infra-guide" target="_blank" rel="noopener">GitHub</a></p>
+  </footer>
+</body>
+</html>

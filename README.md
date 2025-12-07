@@ -12,6 +12,12 @@ Guia sanitizado para apresentar a arquitetura e os procedimentos de operação d
 
 ---
 
+## 🌐 GitHub Pages
+- Site estático em `docs/` (habilite nas Settings do GitHub: Pages → Build and deployment → Source: Deploy from a branch → Branch: `main` / folder `docs`).
+- Visual pronto para portfólio com links diretos para cada guia e checklist.
+
+---
+
 ## 🎯 O que é
 - **Arquitetura**: visão de rede e fluxo de credenciais efêmeras via Vault.
 - **Operação**: guias passo a passo para VPN, Guacamole, Vault, observabilidade e incidentes.
