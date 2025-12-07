@@ -4,7 +4,11 @@ Guia sanitizado para apresentar a arquitetura e os procedimentos de operação d
 
 ---
 
-![AccessHub Banner](https://img.shields.io/badge/AccessHub-Infra_Guide-1f6feb?style=for-the-badge&logo=github) ![Docs](https://img.shields.io/badge/Docs-Ready-green?style=flat-square) ![Security](https://img.shields.io/badge/Secrets-Removed-orange?style=flat-square)
+![AccessHub Banner](assets/banner.svg)
+
+![AccessHub Shield](https://img.shields.io/badge/AccessHub-Infra_Guide-1f6feb?style=for-the-badge&logo=github)
+![Docs](https://img.shields.io/badge/Docs-Ready-green?style=flat-square)
+![Security](https://img.shields.io/badge/Secrets-Removed-orange?style=flat-square)
 
 ---
 
@@ -49,6 +53,8 @@ Guia sanitizado para apresentar a arquitetura e os procedimentos de operação d
 accesshub-infra-guide/
 ├─ README.md            # você está aqui
 ├─ TESTES.md            # plano de homologação
+├─ assets/
+│  └─ banner.svg        # banner para o README
 └─ docs_cliente/        # guias temáticos
    ├─ 00_arquitetura.md
    ├─ 01_acesso_vpn.md

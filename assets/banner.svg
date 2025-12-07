@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320" role="img" aria-label="AccessHub Infra Guide banner">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0b1324"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.9"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="320" fill="url(#bg)"/>
+  <g opacity="0.18">
+    <circle cx="180" cy="140" r="140" fill="#38bdf8"/>
+    <circle cx="380" cy="260" r="120" fill="#8b5cf6"/>
+    <circle cx="1080" cy="140" r="160" fill="#22d3ee"/>
+  </g>
+  <g transform="translate(80 70)">
+    <rect x="0" y="160" width="1040" height="80" fill="url(#accent)" opacity="0.22"/>
+    <rect x="620" y="10" width="420" height="220" rx="22" ry="22" fill="#0f172a" stroke="#38bdf8" stroke-width="2" opacity="0.75"/>
+    <text x="0" y="70" fill="#e2e8f0" font-family="Inter, 'Segoe UI', sans-serif" font-size="52" font-weight="700">AccessHub Infra Guide</text>
+    <text x="0" y="120" fill="#94a3b8" font-family="Inter, 'Segoe UI', sans-serif" font-size="22">VPN • Guacamole • Vault • Observabilidade</text>
+    <text x="640" y="60" fill="#38bdf8" font-family="Inter, 'Segoe UI', sans-serif" font-size="18" font-weight="700">Pilares</text>
+    <text x="640" y="96" fill="#e2e8f0" font-family="Inter, 'Segoe UI', sans-serif" font-size="16">Segurança por padrão</text>
+    <text x="640" y="124" fill="#e2e8f0" font-family="Inter, 'Segoe UI', sans-serif" font-size="16">Credenciais efêmeras via Vault</text>
+    <text x="640" y="152" fill="#e2e8f0" font-family="Inter, 'Segoe UI', sans-serif" font-size="16">Observabilidade de logs</text>
+    <text x="640" y="180" fill="#e2e8f0" font-family="Inter, 'Segoe UI', sans-serif" font-size="16">Scripts automatizados</text>
+  </g>
+</svg>
